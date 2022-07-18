@@ -1,5 +1,6 @@
 package com.gkkendor.app.util
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 
@@ -16,11 +18,11 @@ fun <T: View> T.removeBackground() = apply {
     this.background = null
 }
 
-fun AppCompatActivity.getNavHostFragment(@IdRes id: Int): NavHostFragment? {
+fun FragmentActivity.getNavHostFragment(@IdRes id: Int): NavHostFragment? {
     return supportFragmentManager.findFragmentById(id) as? NavHostFragment
 }
 
-fun AppCompatActivity.getNavController(@IdRes id: Int): NavController? {
+fun FragmentActivity.getNavController(@IdRes id: Int): NavController? {
     return getNavHostFragment(id)?.navController
 }
 

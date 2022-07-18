@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home_filled"
         android:title="Home" />
 
     <item
-        android:id="@+id/navigation_news"
+        android:id="@+id/articleFragment"
         android:icon="@drawable/ic_article_filled"
-        android:title="News" />
+        android:title="Article" />
 
     <item
         android:id="@+id/placeholder"
@@ -17,12 +17,12 @@
         android:title="Panic Button" />
 
     <item
-        android:id="@+id/navigation_report"
+        android:id="@+id/reportFragment"
         android:icon="@drawable/ic_report_filled"
         android:title="Report" />
 
     <item
-        android:id="@+id/navigation_setting"
+        android:id="@+id/settingFragment"
         android:icon="@drawable/ic_setting_filled"
         android:title="Setting" />
 

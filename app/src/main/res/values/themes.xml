@@ -18,7 +18,7 @@
         <item name="contentDescription">@string/app_name</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">100dp</item>
-        <item name="srcCompat">@drawable/broken_img</item>
+        <item name="srcCompat">@drawable/ataraxia</item>
     </style>
 
     <style name="Theme.Ataraxia.MaterialCardView" parent="Widget.MaterialComponents.CardView">
