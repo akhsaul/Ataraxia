@@ -43,7 +43,17 @@ class MainActivity : AppCompatActivity() {
         getNavController(R.id.nav_host_fragment_activity_main)?.let {
             // Passing each menu ID as a set of Ids because each
             // menu should be considered as top level destinations.
-            setupActionBarWithNavController(it, AppBarConfiguration(it.graph))
+            setupActionBarWithNavController(
+                it,
+                AppBarConfiguration(
+                    setOf(
+                        R.id.navigation_home,
+                        R.id.navigation_news,
+                        R.id.navigation_report,
+                        R.id.navigation_setting
+                    )
+                )
+            )
             navView.setupWithNavController(it)
         }
     }

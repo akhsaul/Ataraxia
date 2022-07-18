@@ -6,9 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import com.gkkendor.app.ui.home.HomeViewModel
 //import com.gkkendor.app.ui.news.NewsViewModel
-//import com.gkkendor.app.ui.report.ReportViewModel
+import com.gkkendor.app.ui.report.ReportViewModel
 
-/*
 class ReportViewModelFactory : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
@@ -18,7 +17,7 @@ class ReportViewModelFactory : ViewModelProvider.Factory {
             throw IllegalStateException()
         }
     }
-}*/
+}
 
 /*
 class NewsViewModelFactory : ViewModelProvider.Factory {

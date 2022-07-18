@@ -10,5 +10,10 @@
         android:name="com.gkkendor.app.ui.home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.gkkendor.app.ui.report.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report" />
 
 </navigation>
