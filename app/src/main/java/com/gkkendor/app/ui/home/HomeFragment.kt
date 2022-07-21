@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.gkkendor.app.adapter.ArticleAdapter
 import com.gkkendor.app.databinding.FragmentHomeBinding
 import com.gkkendor.app.util.HomeViewModelFactory
+import com.gkkendor.app.util.Resource
+import com.gkkendor.app.util.toast
 
 class HomeFragment : Fragment() {
 
@@ -21,6 +25,9 @@ class HomeFragment : Fragment() {
     private val binding
         get() = _binding!!
 
+    private val articleAdapter: ArticleAdapter by lazy {
+        ArticleAdapter()
+    }
     private val homeViewModel: HomeViewModel by viewModels {
         HomeViewModelFactory()
     }
@@ -36,6 +43,25 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.rvLatestArticle.apply {
+            adapter = articleAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+        homeViewModel.articles.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Resource.Loading -> {
+                    activity.toast("Still Loading")
+                }
+                is Resource.Error -> {
+                    activity.toast("Error")
+                }
+                is Resource.Success -> {
+                    response.data?.let { newsResponse ->
+                        articleAdapter.differ.submitList(newsResponse.articles)
+                    }
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

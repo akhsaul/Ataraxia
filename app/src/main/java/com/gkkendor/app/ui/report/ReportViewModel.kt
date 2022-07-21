@@ -7,7 +7,9 @@ import com.gkkendor.app.model.Report
 import com.gkkendor.app.model.ReportResponse
 import com.gkkendor.app.util.Constants
 import com.gkkendor.app.util.Resource
+import com.gkkendor.app.util.formatTo
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 
 class ReportViewModel : ViewModel() {
@@ -23,6 +25,7 @@ class ReportViewModel : ViewModel() {
     fun getReports() = viewModelScope.launch {
         resources.postValue(Resource.Loading())
         try {
+            val sdf = SimpleDateFormat(Constants.PATTERN_DATE)
             val reports = mutableListOf<Report>().apply {
                 repeat(25){
                     val id = it + 1
@@ -30,7 +33,7 @@ class ReportViewModel : ViewModel() {
                         id,
                         "Tittle $id",
                         Constants.randomString(255),
-                        LocalDateTime.now().toString(),
+                        LocalDateTime.now().toString().formatTo(sdf),
                         Constants.statuses.random()
                     ))
                 }

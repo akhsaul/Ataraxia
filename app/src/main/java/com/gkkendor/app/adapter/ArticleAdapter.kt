@@ -27,7 +27,7 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() 
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.url == newItem.url
+            return oldItem.imageUrl == newItem.imageUrl
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -60,7 +60,7 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() 
             // Need read documentation for listener
             var isError = false
             val glideImage = Glide.with(this)
-                .load(article.urlToImage)
+                .load(article.imageUrl)
                 .error(R.drawable.broken_img)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
@@ -92,7 +92,7 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() 
 
             holder.ivNews.contentDescription = article.title
             holder.tvTittle.text = article.title
-            holder.tvDesc.text = article.description
+            holder.tvDesc.text = article.content
             holder.tvDate.text = article.publishedAt
             setOnClickListener {
                 onItemClickListener?.let {

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_bottom"
-    app:startDestination="@id/articleFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -15,11 +15,48 @@
         android:id="@+id/articleFragment"
         android:name="com.gkkendor.app.ui.article.ArticleFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article">
+        <action
+            android:id="@+id/action_articleFragment_to_detailArticleFragment"
+            app:destination="@id/detailArticleFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/reportFragment"
         android:name="com.gkkendor.app.ui.report.ReportFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_report" />
+        tools:layout="@layout/fragment_report">
+        <action
+            android:id="@+id/action_reportFragment_to_detailReportFragment"
+            app:destination="@id/detailReportFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailArticleFragment"
+        android:name="com.gkkendor.app.ui.article.DetailArticleFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_detail_article" >
+        <argument
+            android:name="article"
+            app:argType="com.gkkendor.app.model.Article" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailReportFragment"
+        android:name="com.gkkendor.app.ui.report.DetailReportFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_detail_report" >
+        <argument
+            android:name="report"
+            app:argType="com.gkkendor.app.model.Report"
+            app:nullable="true" />
+        <argument
+            android:name="isEditor"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.gkkendor.app.ui.setting.SettingFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

@@ -1,20 +1,24 @@
 package com.gkkendor.app.util
 
-import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.gkkendor.app.R
+import java.text.SimpleDateFormat
 
-fun <T: View> T.removeBackground() = apply {
+fun <T : View> T.removeBackground() = apply {
     this.background = null
 }
 
@@ -54,6 +58,29 @@ fun Context?.isAppInstalled(packageName: String): Boolean {
             return true
         }.getOrDefault(false)
     }
+}
+
+/**
+ * return NotificationManager if Context is not null
+ * */
+fun Context.createNotificationChannel(): NotificationManager {
+    val notificationManager: NotificationManager =
+        this.getSystemService(NotificationManager::class.java)
+    // Since android Oreo notification channel is needed.
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        notificationManager.createNotificationChannel(
+            NotificationChannel(
+                getString(R.string.default_notification_channel_id),
+                getString(R.string.default_notification_channel_name),
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                setAllowBubbles(true)
+                enableLights(true)
+                enableVibration(true)
+            }
+        )
+    }
+    return notificationManager
 }
 
 fun Context?.openWhatsapp(
@@ -100,4 +127,17 @@ fun Context?.openWhatsapp(
             toast("Error")
         }
     }
+}
+
+fun String.formatTo(format: SimpleDateFormat): String {
+    return runCatching {
+        val dateFormat = SimpleDateFormat(Constants.PATTERN_DATE_RESPONSE)
+        val date = dateFormat.parse(this)
+        format.format(date!!)
+    }.onFailure {
+        Log.e(
+            "Date Formatter",
+            "String can't parse with pattern ${Constants.PATTERN_DATE_RESPONSE}"
+        )
+    }.getOrDefault(this)
 }

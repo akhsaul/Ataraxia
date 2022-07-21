@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.gkkendor.app.R
 import com.gkkendor.app.databinding.FragmentRegisterBinding
+import com.gkkendor.app.util.Constants
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.text.SimpleDateFormat
@@ -27,7 +28,7 @@ class RegisterFragment : Fragment() {
         get() = _binding!!
 
     private val registerViewModel: RegisterViewModel by viewModels()
-    private val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    private val sdf = SimpleDateFormat(Constants.PATTERN_PICK_DATE, Locale.getDefault())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

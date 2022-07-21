@@ -1,13 +1,14 @@
 package com.gkkendor.app.ui.article
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gkkendor.app.R
 import com.gkkendor.app.adapter.ArticleAdapter
 import com.gkkendor.app.databinding.FragmentArticleBinding
 import com.gkkendor.app.util.ArticleViewModelFactory
@@ -21,6 +22,7 @@ class ArticleFragment : Fragment() {
     }
 
     private var _binding: FragmentArticleBinding? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -55,8 +57,12 @@ class ArticleFragment : Fragment() {
             }
         }
         articleAdapter.setOnItemClickListener {
-            Log.i(TAG, it.toString())
-            activity.toast("Clicked item: $it")
+            findNavController().navigate(
+                R.id.action_articleFragment_to_detailArticleFragment,
+                Bundle().apply {
+                    putSerializable("article", it)
+                }
+            )
         }
         articleViewModel.articles.observe(viewLifecycleOwner) { response ->
             when (response) {

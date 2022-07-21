@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gkkendor.app.R
 import com.gkkendor.app.adapter.ReportAdapter
 import com.gkkendor.app.databinding.FragmentReportBinding
 import com.gkkendor.app.util.ReportViewModelFactory
@@ -53,10 +55,24 @@ class ReportFragment : Fragment() {
             }
         }
         binding.btnAddReport.setOnClickListener {
-            activity.toast("Add Report")
+            findNavController().navigate(
+                R.id.action_reportFragment_to_detailReportFragment,
+                Bundle().apply {
+                    putBoolean("isEditor", true)
+                    putSerializable("report", null)
+                }
+            )
         }
         reportAdapter.setOnItemClickListener {
-            activity.toast("Clicked item: $it")
+            // TODO
+            //  Add Argument
+            findNavController().navigate(
+                R.id.action_reportFragment_to_detailReportFragment,
+                Bundle().apply {
+                    putBoolean("isEditor", false)
+                    putSerializable("report", it)
+                }
+            )
         }
         reportViewModel.resources.observe(viewLifecycleOwner) { response ->
             when (response) {

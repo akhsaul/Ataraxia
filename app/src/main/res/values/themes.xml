@@ -17,8 +17,13 @@
     <style name="Theme.Ataraxia.LogoView" parent="">
         <item name="contentDescription">@string/app_name</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_height">150dp</item>
         <item name="srcCompat">@drawable/ataraxia</item>
+    </style>
+
+    <style name="Theme.Ataraxia.Avatar" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
     <style name="Theme.Ataraxia.MaterialCardView" parent="Widget.MaterialComponents.CardView">
@@ -28,5 +33,8 @@
         <item name="cornerRadius">10dp</item>
         <item name="cardElevation">4dp</item>
         <item name="cardMaxElevation">8dp</item>
+    </style>
+    <style name="Theme.Ataraxia.DashedButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">@null</item>
     </style>
 </resources>
